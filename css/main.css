@@ -119,6 +119,31 @@ h6 a {
   text-decoration: none;
   color: #232938; }
 
+.wysiwyg em {
+  font-style: italic;
+}
+
+.wysiwyg.main-description {
+  margin: 1rem 0;   /* tighten the spacing */
+}
+
+
+/* Celebrity name styling */
+.celebrity-name {
+  font-size: 1.8rem;   /* Bigger than normal */
+  font-weight: bold;   /* Make it stand out */
+  margin-bottom: 0.3em;
+}
+
+/* Celebrity quote styling */
+.celebrity-quote {
+  font-size: 1.3rem;   /* Slightly smaller than name */
+  font-style: italic;  /* Differentiate with italics */
+  line-height: 1.6;
+  margin-bottom: 1.2em;
+}
+
+
 strong {
   font-weight: 600; }
 
