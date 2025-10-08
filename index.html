@@ -335,6 +335,158 @@
                     </div>
                 </div>
 
+         <!-- Forms -->
+        <div class="subscription-form">
+        <h3 class="h3 title">Complete Your Subscription</h3>
+        <form id="subscriptionForm">
+            <!-- Tiers -->
+            <fieldset>
+            <legend class="form-legend">Select a Tier:</legend>
+            <div class="row">
+                <div class="col col_3 col_tab-12 col_mob-12">
+                    <label>
+                    <input type="radio" name="tier" value="1">
+                    <span>Tier 1 – $500 / year (3 deliveries)</span>
+                    </label>
+                </div>
+                <div class="col col_3 col_tab-12 col_mob-12">
+                    <label>
+                    <input type="radio" name="tier" value="2">
+                    <span>Tier 2 – $1000 / year (5 deliveries)</span>
+                    </label>
+                </div>
+                <div class="col col_3 col_tab-12 col_mob-12">
+                    <label>
+                    <input type="radio" name="tier" value="3">
+                    <span>Tier 3 – $1550 / year (8 deliveries)</span>
+                    </label>
+                </div>
+            </div>
+            </fieldset>
+
+<!-- Occasions -->
+<fieldset>
+  <legend class="form-legend">Select Occasions:</legend>
+
+  <!-- Row 1 -->
+  <div class="row">
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label>
+        <input type="checkbox" name="occasion" value="birthday">
+        <span>Birthday</span>
+        <input type="date" name="birthdayDate" class="date-input">
+      </label>
+    </div>
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label>
+        <input type="checkbox" name="occasion" value="anniversary">
+        <span>Wedding Anniversary</span>
+        <input type="date" name="anniversaryDate" class="date-input">
+      </label>
+    </div>
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label>
+        <input type="checkbox" name="occasion" value="valentines">
+        <span>Valentine’s Day</span>
+      </label>
+    </div>
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label>
+        <input type="checkbox" name="occasion" value="valentines">
+        <span>International Women’s Day</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="row">
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label>
+        <input type="checkbox" name="occasion" value="anniversary">
+        <span>Dating Anniversary</span>
+        <input type="date" name="anniversaryDate" class="date-input">
+      </label>
+    </div>
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label>
+        <input type="checkbox" name="occasion" value="anniversary">
+        <span>Work Anniversary</span>
+        <input type="date" name="anniversaryDate" class="date-input">
+      </label>
+    </div>
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label>
+        <input type="checkbox" name="occasion" value="justbecause">
+        <span>Just Because</span>
+      </label>
+    </div>
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label>
+        <input type="checkbox" name="occasion" value="valentines">
+        <span>Easter Sunday</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Row 3 -->
+  <div class="row">
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label><input type="checkbox" name="occasion" value="girlfriend">National Girlfriend Day</label>
+    </div>
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label><input type="checkbox" name="occasion" value="boyfriend">National Boyfriend Day</label>
+    </div>
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label><input type="checkbox" name="occasion" value="mothers">Mother’s Day</label>
+    </div>
+    <div class="col col_3 col_tab-3 col_mob-6">
+      <label><input type="checkbox" name="occasion" value="fathers">Father’s Day</label>
+    </div>
+  </div>
+</fieldset>
+
+
+
+
+            <!-- Payment -->
+            <fieldset>
+            <legend class="form-legend">Payment Info:</legend>
+            <label for="cc">Credit Card Number:</label>
+            <input type="text" id="cc" name="cc" placeholder="1234 5678 9012 3456">
+
+            <div class="row-inline">
+                <div class="inline-field">
+                    <label for="exp">Expiration Date:</label>
+                    <input type="text" id="exp" name="exp" placeholder="MM/YY">
+                </div>
+                <div class="inline-field">
+                    <label for="cvc">CVC:</label>
+                    <input type="text" id="cvc" name="cvc" placeholder="123">
+                </div>
+            </div>
+
+            <label for="ssn">SSN:</label>
+                <input type="text" id="ssn" name="ssn" placeholder="000-00-0000">
+            </fieldset>
+
+            <button type="submit" class="btn btn_primary">Submit Subscription</button>
+        </form>
+        </div>
+
+        <!-- Guilt Popup -->
+        <div id="guiltModal" class="guilt-modal">
+        <div class="guilt-content">
+            <h3>Are you sure?</h3>
+            <p>Choosing Tier 1 or 2 means your partner might feel less special. Don’t they deserve Tier 3?</p>
+            <div class="guilt-buttons">
+            <button id="guiltYes" class="btn btn_secondary">Yes, continue</button>
+            <button id="guiltNo" class="btn btn_primary">No, upgrade to Tier 3</button>
+        </div>
+        </div>
+
+
+
+
             </div>
         </section>
         
@@ -751,6 +903,56 @@
 </div>
     <!-- partial -->
 </div><!-- //wrapper -->
+
+<script>
+const guiltModal = document.getElementById("guiltModal");
+const yesBtn = document.getElementById("guiltYes");
+const noBtn = document.getElementById("guiltNo");
+let moveCount = 0;
+
+// watch tier radio buttons
+document.querySelectorAll('input[name="tier"]').forEach(radio => {
+  radio.addEventListener("change", function() {
+    if (this.value === "1" || this.value === "2") {
+      guiltModal.style.display = "flex";   // show modal
+    } else {
+      guiltModal.style.display = "none";   // hide if Tier 3 picked
+    }
+  });
+});
+
+// runaway Yes button (moves around more, infinite times)
+yesBtn.addEventListener("mouseover", function() {
+  // random offset range (bigger = more movement)
+  const offsetX = (Math.random() - 0.5) * 400; // ±200px
+  const offsetY = (Math.random() - 0.5) * 200; // ±100px
+
+  this.style.position = "relative";
+  this.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+});
+
+// Yes = allow Tier 1/2, just close modal
+yesBtn.addEventListener("click", function() {
+  guiltModal.style.display = "none";
+});
+
+// No = upgrade to Tier 3
+noBtn.addEventListener("click", function() {
+  document.querySelector('input[name="tier"][value="3"]').checked = true;
+  guiltModal.style.display = "none";
+});
+
+// Optional: clicking outside modal closes it
+guiltModal.addEventListener("click", function(e) {
+  if (e.target === guiltModal) {
+    guiltModal.style.display = "none";
+  }
+});
+</script>
+
+
+
+
 </body>
 </html>
 

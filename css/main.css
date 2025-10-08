@@ -2414,6 +2414,157 @@ font-style: italic;}
           align-items: center;
   margin: 0 -4px; }
 
+.subscription-form {
+  margin-top: 30px;
+  padding: 20px;
+  border: 2px solid #ae0347;
+  border-radius: 12px;
+  background: rgba(174, 3, 71, 0.05);
+  line-height: 1.3;
+}
+
+.subscription-form label {
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
+  gap: 6px;
+}
+
+.date-input {
+  display: block;
+  margin-top: 6px;
+  padding: 4px;
+  font-size: 14px;
+}
+.date-input.hidden {
+  display: none;
+}
+
+.row-inline {
+  display: flex;
+  gap: 16px;
+}
+.row-inline .inline-field {
+  flex: 1;
+}
+
+.subscription-form fieldset {
+  padding: 15px;
+  margin-top: 20px;
+  border: 1px solid #ae0347;
+  border-radius: 8px;
+}
+
+fieldset .col label {
+  display: flex;
+  align-items: left;
+  gap: 8px;            /* spacing between radio and text */
+  width: 100%;         /* span full column */
+  cursor: pointer;
+  white-space: nowrap; 
+  text-align: left; 
+}
+
+fieldset .date-input {
+  width: auto;               /* don't let framework make it 100% */
+  min-width: 4rem;           /* readable date field */
+  max-width: 8rem;
+}
+
+fieldset input[type="radio"],
+fieldset input[type="checkbox"] {
+  margin: 0;           /* remove default browser spacing */
+  vertical-align: left;
+}
+
+.subscription-form input,
+.subscription-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+
+.occasions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns PC */
+  gap: 12px 16px;
+}
+@media (max-width: 768px) {
+  .occasions-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns mobile */
+  }
+}
+
+
+.subscription-form legend {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.subscription-form input[type="text"] {
+  margin-bottom: 12px;
+}
+
+.subscription-form input[type="radio"],
+.subscription-form input[type="checkbox"] {
+  width: auto;
+  flex: 0 0 auto;
+  margin: 0 6px 0 0;
+}
+
+
+.subscription-form fieldset .row .col {
+  display: flex;
+  flex-wrap: wrap;        /* lets items flow onto the same row neatly */
+  gap: 8px 16px;
+}
+
+.tier-options label {
+  display: flex;
+  align-items: center;
+}
+
+.form-legend {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin: 0 6px 0 0;      /* remove inconsistent margins, add consistent spacing */
+  vertical-align: middle; /* aligns box with text baseline */
+  position: relative;     /* keep consistent across browsers */
+  top: -1px;              /* tiny nudge to align perfectly with text */
+}
+
+
+.guilt-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+.guilt-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+}
+
+#guiltYes {
+  position: relative;
+}
+
 .soc-item {
   margin: 0 4px; }
 
