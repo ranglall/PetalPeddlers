@@ -921,19 +921,16 @@ document.querySelectorAll('input[name="tier"]').forEach(radio => {
   });
 });
 
-// runaway Yes button (moves around more, infinite times)
-yesBtn.addEventListener("mouseover", function() {
-  // random offset range (bigger = more movement)
+// runaway Yes button (jumps on click)
+yesBtn.addEventListener("click", function(e) {
+  e.preventDefault(); // block normal click behavior
+
+  // random offset range
   const offsetX = (Math.random() - 0.5) * 400; // ±200px
   const offsetY = (Math.random() - 0.5) * 200; // ±100px
 
   this.style.position = "relative";
   this.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-});
-
-// Yes = allow Tier 1/2, just close modal
-yesBtn.addEventListener("click", function() {
-  guiltModal.style.display = "none";
 });
 
 // No = upgrade to Tier 3
@@ -942,13 +939,8 @@ noBtn.addEventListener("click", function() {
   guiltModal.style.display = "none";
 });
 
-// Optional: clicking outside modal closes it
-guiltModal.addEventListener("click", function(e) {
-  if (e.target === guiltModal) {
-    guiltModal.style.display = "none";
-  }
-});
 </script>
+
 
 
 
