@@ -922,13 +922,19 @@ document.querySelectorAll('input[name="tier"]').forEach(radio => {
   });
 });
 
+function randomOffset(min, max) {
+  // random value between min and max, randomly flipped +/-
+  const value = Math.random() * (max - min) + min;
+  return Math.random() < 0.5 ? -value : value;
+}
+
 // runaway Yes button (jumps on click)
 yesBtn.addEventListener("click", function(e) {
   e.preventDefault(); // block normal click behavior
 
   // random offset range
-  const offsetX = (Math.random() - 0.5) * 400; // ±200px
-  const offsetY = (Math.random() - 0.5) * 200; // ±100px
+    const offsetX = randomOffset(100, 500); // min 200px, max 600px
+    const offsetY = randomOffset(50, 300);
 
   this.style.position = "relative";
   this.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
