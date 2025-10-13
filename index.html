@@ -270,7 +270,7 @@
                                                             <div class="reviews-slider__image">
                                                                 <img src="images/content/reviews-1.jpg" alt="reviews-1">
                                                             </div>
-                                                            <h5 class="h5 reviews-slider__name">Vice President of Transportation, Sri Lanka</h5>
+                                                            <h5 class="h5 reviews-slider__name">Vice President of Transportation of Sri Lanka</h5>
                                                         </div>
                                                         <div class="reviews-item__column_right">
                                                             <div class="soc">
@@ -714,9 +714,9 @@
                                     <path opacity="0.3" d="M14.9727 60.1216C14.9727 60.1216 16.4727 62.1216 21.4727 62.6216C26.4727 63.1216 63.4727 62.6216 63.4727 62.6216" stroke="#7F74FF" stroke-linecap="round"/>
                                     <path opacity="0.3" d="M2.47241 9.62158C1.63906 15.4549 0.272362 30.4216 1.47241 43.6216" stroke="#7F74FF" stroke-linecap="round"/>
                                 </svg>
-                                <span class="sale"><span>-10%</span></span>
+                                <span class="sale"><span>-.01%</span></span>
                             </div>
-                            <h3 class="h3 title">Sign up now to get 10% off your first order</h3>
+                            <h3 class="h3 title">Sign up now to get 0.01% off your first order</h3>
                         </div>
                         <form id="subscription-form-post" class="form subscription-form" name="subscription_form_post" method="post">
                             <div class="form-field ">
@@ -928,30 +928,33 @@ document.querySelectorAll('input[name="tier"]').forEach(radio => {
 });
 
 function randomOffset(min, max) {
-  // random value between min and max, randomly flipped +/-
+  // random value between min and max, randomly flipped +/- 
   const value = Math.random() * (max - min) + min;
   return Math.random() < 0.5 ? -value : value;
 }
 
-// runaway Yes button (jumps on click)
-yesBtn.addEventListener("click", function(e) {
+// function to move the Yes button
+function moveYesButton(e) {
   e.preventDefault(); // block normal click behavior
 
-  // random offset range
-    const offsetX = randomOffset(100, 500); // min 200px, max 600px
-    const offsetY = randomOffset(50, 300);
+  const offsetX = randomOffset(100, 400);
+  const offsetY = randomOffset(50, 300);
 
-  this.style.position = "relative";
-  this.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-});
+  yesBtn.style.position = "relative";
+  yesBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+}
+
+// runaway Yes button (jumps on hover and click)
+yesBtn.addEventListener("click", moveYesButton);
+yesBtn.addEventListener("mouseenter", moveYesButton);
 
 // No = upgrade to Tier 3
 noBtn.addEventListener("click", function() {
   document.querySelector('input[name="tier"][value="3"]').checked = true;
   guiltModal.style.display = "none";
 });
-
 </script>
+
 
 
 
